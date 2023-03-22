@@ -15,12 +15,13 @@ export function ClientList() {
                 .collection('person')
                 .onSnapshot(snapshot => {
                     const data = snapshot.docs.map(doc => {
-                        const { name, document, phone } = doc.data();
+                        const { name, document, phone, email } = doc.data();
                         return {
                             id: doc.id,
                             name,
                             document,
-                            phone
+                            phone,
+                            email
                         }
                     })
                     setClientNew(data)
@@ -29,17 +30,18 @@ export function ClientList() {
     }, [])
 
     return (
-        <VStack flex={1} pb={6} bg={"blue.200"}>
+        <VStack flex={1} pb={6} bg={"gray.700"}>
             <HStack
                 w="full"
                 justifyContent="space-between"
                 alignItems="center"
                 bg="gray.600"
-                pt={9}
-                pb={5}
-                px={6}>
+                pt={1}
+                pb={5}>
             </HStack>
-            <Text> MARIA MAE DE DEUS</Text>
+            <Center bg="gray.600">
+                <Text color="white" fontSize={22} bold>LISTA DE CLIENTES</Text>
+            </Center>
             <FlatList
                 data={clientNew}
                 keyExtractor={item => item.id}

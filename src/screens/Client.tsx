@@ -9,7 +9,8 @@ import auth from '@react-native-firebase/auth';
 export type Person = {
     name: string,
     document: string,
-    phone: string
+    phone: string,
+    email: string
 }
 
 export function Client() {
@@ -24,7 +25,7 @@ export function Client() {
             .catch(error => console.log(error))
     }
 
-    function handleClient(person : Person ) {
+    function handleClient(person: Person) {
         firestore()
             .collection('person')
             .add({
@@ -70,6 +71,14 @@ export function Client() {
                     name="document"
                     render={({ field: { onChange } }) => (
                         <Input placeholder="Documento" onChangeText={onChange} />
+                    )}
+                />
+
+                <Controller
+                    control={control}
+                    name="email"
+                    render={({ field: { onChange } }) => (
+                        <Input placeholder="email" onChangeText={onChange} />
                     )}
                 />
 
